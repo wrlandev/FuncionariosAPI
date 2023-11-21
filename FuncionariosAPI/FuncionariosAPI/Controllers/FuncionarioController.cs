@@ -21,10 +21,34 @@ namespace FuncionariosAPI.Controllers
             return Ok(await _funcionario.BuscarFuncionarios());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult> BuscarFuncionarioPorId(int id)
+        {
+            return Ok(await _funcionario.BuscarFuncionarioPorId(id));
+        }
+
         [HttpPost]
         public async Task<ActionResult> CriarFuncionario(FuncionarioModel funcionario)
         {
             return Ok(await _funcionario.CriarFuncionario(funcionario));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> AtualizarFuncionario(FuncionarioModel funcionarioEditado)
+        {
+            return Ok(await _funcionario.AtualizarFuncionario(funcionarioEditado));
+        }
+
+        [HttpPut("Inativa")] 
+        public async Task<ActionResult> InativaFuncionario(int id)
+        {
+            return Ok(await _funcionario.InativaFuncionario(id));
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeletarFuncionario(int id)
+        {
+            return Ok(await _funcionario.DeletarFuncionario(id));
         }
     }
 }
