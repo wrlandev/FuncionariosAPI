@@ -1,5 +1,6 @@
 
 using FuncionariosAPI.Data;
+using FuncionariosAPI.Service.FuncionarioService;
 using Microsoft.EntityFrameworkCore;
 
 namespace FuncionariosAPI
@@ -16,6 +17,7 @@ namespace FuncionariosAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IFuncionarioInterface, FuncionarioService>();
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnction"));

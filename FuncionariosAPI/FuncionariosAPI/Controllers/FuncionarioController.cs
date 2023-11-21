@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FuncionariosAPI.Models;
+using FuncionariosAPI.Service.FuncionarioService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FuncionariosAPI.Controllers
@@ -7,10 +9,22 @@ namespace FuncionariosAPI.Controllers
     [ApiController]
     public class FuncionarioController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult BuscarTodos()
+        private readonly IFuncionarioInterface _funcionario;
+        public FuncionarioController(IFuncionarioInterface funcionario)
         {
-            return Ok("oi");
+            _funcionario = funcionario;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> BuscarFuncionarios()
+        {
+            return Ok(await _funcionario.BuscarFuncionarios());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CriarFuncionario(FuncionarioModel funcionario)
+        {
+            return Ok(await _funcionario.CriarFuncionario(funcionario));
         }
     }
 }
