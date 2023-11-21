@@ -1,5 +1,6 @@
 
 using FuncionariosAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FuncionariosAPI
 {
